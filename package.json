@@ -1,5 +1,5 @@
 {
-  "name": "parcel-project-template",
+  "name": "goit-js-hw-09",
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
@@ -13,8 +13,8 @@
     "url": "git+https://github.com/NataliiaHrynchuk/goit-js-hw-09.git"
   },
   "keywords": [],
-  "author": "Alexander Repeta <alexander.repeta@gmail.com>",
-  "license": "ISC",
+  "author": "Nataliia Hrynchuk <natagrinchukk@gmail.com>",
+  "license": "",
   "bugs": {
     "url": "https://github.com/NataliiaHrynchuk/goit-js-hw-09/issues"
   },
