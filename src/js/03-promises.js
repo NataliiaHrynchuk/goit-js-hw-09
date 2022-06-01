@@ -32,12 +32,13 @@ function onFormInput(event) {
 
           // console.log('запускаю інтервал');
          position += 1;
+         delay = (Number(delay) + Number(step));
         createPromise(position, delay)
          .then(({ position, delay }) => {
-           console.log(`✅ Fulfilled promise ${position} in ${delay}ms`);
+          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {timeout: delay,});
          })
          .catch(({ position, delay }) => {
-           console.log(`❌ Rejected promise ${position} in ${delay}ms`);
+          Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {timeout: delay,});
          });
     }, delay);
    }
