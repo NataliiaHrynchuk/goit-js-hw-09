@@ -1,0 +1,1 @@
+{"version":3,"sources":["promises.css"],"names":[],"mappings":"AAAA,KACI,YAAa,CACb,cACJ,CAMA,aACI,eAAgB,CAChB,gBACJ","file":"03-promises.e80a07e6.css","sourceRoot":"../src","sourcesContent":["form {\n    display: flex;\n    flex-wrap: wrap;\n}\nlabel {\n    margin-top: 20px;\n    margin-left: 10px;\n}\n\nbutton {\n    margin-top: 20px;\n    margin-left: 10px;\n}"]}
