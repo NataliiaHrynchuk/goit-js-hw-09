@@ -1,59 +1,61 @@
 import Notiflix from 'notiflix';
 
-const refs = {
-  form: document.querySelector('form'),
+function createPromise(position, delay) {
+  const shouldResolve = Math.random() > 0.3;
+  return new Promise((resolve, reject) => {
+    
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve ({position, delay});
+      } else {
+        reject ({position, delay});
+      }
+    }, delay);
+  })
 }
 
-let delay = 0;
-let step = 0;
-let amount = 0;
+const form = document.querySelector('form');
+
 let position = 0;
+const delays = [];
 
-refs.form.addEventListener('input', onFormInput);
-refs.form.addEventListener('submit', onFormSubmit);
+form.addEventListener('submit', onFormSubmit);
 
-function onFormInput(event) {
+function onFormSubmit(event)  {
   event.preventDefault();
-  
-  delay = refs.form.elements.delay.value;
-  step  = refs.form.elements.step.value;
-  amount = refs.form.elements.amount.value;
-  }  
 
-  function onFormSubmit(event)  {
-    event.preventDefault();
-    
-      const intervalId = setInterval(() => {
-        if (position === Number(amount)) {
-          // console.log('потрібно зупинити інтервал');
-          clearInterval(intervalId);
-          return;
-          } 
+  let delay = form.elements.delay.value;
+  const step  = form.elements.step.value;
+  const amount = form.elements.amount.value;
 
-          // console.log('запускаю інтервал');
-         position += 1;
-         delay = (Number(delay) + Number(step));
-        createPromise(position, delay)
-         .then(({ position, delay }) => {
-          Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`, {timeout: delay,});
-         })
-         .catch(({ position, delay }) => {
-          Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`, {timeout: delay,});
-         });
-    }, delay);
-   }
+for (let i = 1; i <= amount; i += 1) {
+  delays.push(Number(delay));
+  delay = Number(delay) + Number(step);
+  };
+
+// console.log(delays);
+
+delays.map(delay => {
+  
+  // position = (delays.indexOf(delay) + 1);
+  position += 1;
+  // console.log(position);
+  // console.log(delay);
+createPromise(position, delay)
+.then(({ position, delay }) => {
+  Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`,  {timeout: 5000,});
+ })
+ .catch(({ position, delay }) => {
+  Notiflix.Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`,  {timeout: 5000,});
+ });
+ 
+ })
+ 
+//  console.log(promises);
+//  showMessage(promises);
+
+  delays.splice(0, amount);
+  position = 0;
+ }
   
 
-   function createPromise(position, delay) {
-  
-    return new Promise((resolve, reject) => {
-      const shouldResolve = Math.random() > 0.3;
-      setTimeout(() => {
-        if (shouldResolve) {
-          resolve ({position, delay});
-        } else {
-          reject ({position, delay});
-        }
-      }, delay);
-    })
-  }
