@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+import '../css/promises.css';
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
